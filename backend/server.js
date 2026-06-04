@@ -54,6 +54,14 @@ app.get("/", (req, res) => {
   res.send("API WORKING");
 });
 
+// PING ENDPOINT FOR RENDER COOLDOWN
+app.get("/health", (req, res) => {
+  res.json({
+    status: "ok",
+    timestamp: new Date().toISOString(),
+  });
+});
+
 app.listen(PORT, () => {
   console.log(`Server Started http://localhost:${PORT}`);
 });
