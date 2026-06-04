@@ -6,16 +6,18 @@ import doctorRouter from "./routes/doctorRouter.js";
 import serviceRouter from "./routes/serviceRouter.js";
 import appointmentRouter from "./routes/appointmentRouter.js";
 import serviceAppointmentRouter from "./routes/serviceAppointmentRouter.js";
-import fs from 'fs';
-import dotenv from 'dotenv';
+import fs from "fs";
+import dotenv from "dotenv";
 dotenv.config();
 console.log("Found .env?", fs.existsSync(".env"));
-
 
 const app = express();
 const PORT = process.env.PORT || 4000;
 
-const allowedOrigins = ["http://localhost:5173", "http://localhost:5174"];
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://caresync-admin-psi.vercel.app",
+];
 
 // MIDDLEWARES
 app.use(
