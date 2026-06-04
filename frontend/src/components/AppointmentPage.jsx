@@ -18,7 +18,7 @@ import {
   XCircle,
 } from "lucide-react";
 
-const API_BASE = "http://localhost:4000";
+const API_BASE = "https://caresync-backend-rxz5.onrender.com";
 
 const pad = (n) => {
   return String(n ?? 0).padStart(2, "0");

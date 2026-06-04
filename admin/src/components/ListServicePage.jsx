@@ -13,7 +13,7 @@ import {
 import { serviceListStyles as s } from "../assets/dummyStyles";
 
 const ListServicePage = () => {
-  const API_BASE = "http://localhost:4000";
+  const API_BASE = "https://caresync-backend-rxz5.onrender.com";
 
   const [services, setServices] = useState([]);
   const [openDetails, setOpenDetails] = useState({});

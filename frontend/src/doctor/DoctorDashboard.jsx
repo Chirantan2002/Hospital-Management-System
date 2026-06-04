@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 import { dashboardStyles } from "../assets/dummyStyles";
 
-const API_BASE = "http://localhost:4000";
+const API_BASE = "https://caresync-backend-rxz5.onrender.com";
 
 const parseDateTime = (date, time) => {
   return new Date(`${date}T${time}:00`);

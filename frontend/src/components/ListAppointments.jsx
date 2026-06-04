@@ -299,7 +299,7 @@ const RescheduleButton = ({ appointment, onReschedule }) => {
 };
 
 const ListAppointments = () => {
-  const API_BASE = "http://localhost:4000";
+  const API_BASE = "https://caresync-backend-rxz5.onrender.com";
   const [appointments, setAppointments] = useState([]);
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState("");

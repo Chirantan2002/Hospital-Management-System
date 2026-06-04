@@ -15,7 +15,7 @@ import {
   XIcon,
 } from "lucide-react";
 
-const API_BASE = "http://localhost:4000";
+const API_BASE = "https://caresync-backend-rxz5.onrender.com";
 
 // HELPER FUNCTIONS AND COMPONENTS
 function formatTwo(n) {

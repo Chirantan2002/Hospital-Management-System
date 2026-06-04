@@ -10,7 +10,7 @@ import {
   Search,
 } from "lucide-react";
 
-const API_BASE = "http://localhost:4000";
+const API_BASE = "https://caresync-backend-rxz5.onrender.com";
 const PATIENT_COUNT_API = `${API_BASE}/api/appointments/patients/count`;
 
 // HELPER FUNCTIONS

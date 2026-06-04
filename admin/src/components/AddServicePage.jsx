@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 
 const AddServicePage = ({ serviceId }) => {
-  const API_BASE = "http://localhost:4000";
+  const API_BASE = "https://caresync-backend-rxz5.onrender.com";
   const fileRef = useRef(null);
   const [imagePreview, setImagePreview] = useState(null);
   const [imageFile, setImageFile] = useState(null);
