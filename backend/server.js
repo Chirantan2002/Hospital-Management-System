@@ -19,6 +19,16 @@ const allowedOrigins = [
   "https://caresync-admin-psi.vercel.app",
 ];
 
+// PING ENDPOINT FOR RENDER COOLDOWN
+app
+  .route("/health")
+  .get((req, res) => {
+    res.status(200).json({ status: "ok" });
+  })
+  .head((req, res) => {
+    res.sendStatus(200);
+  });
+
 // MIDDLEWARES
 app.use(
   cors({
@@ -53,16 +63,6 @@ app.use("/api/services-appointments", serviceAppointmentRouter);
 app.get("/", (req, res) => {
   res.send("API WORKING");
 });
-
-// PING ENDPOINT FOR RENDER COOLDOWN
-app
-  .route("/health")
-  .get((req, res) => {
-    res.status(200).json({ status: "ok" });
-  })
-  .head((req, res) => {
-    res.sendStatus(200);
-  });
 
 app.listen(PORT, () => {
   console.log(`Server Started http://localhost:${PORT}`);
