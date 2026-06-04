@@ -20,14 +20,13 @@ const allowedOrigins = [
 ];
 
 // PING ENDPOINT FOR RENDER COOLDOWN
-app
-  .route("/health")
-  .get((req, res) => {
-    res.status(200).json({ status: "ok" });
-  })
-  .head((req, res) => {
-    res.sendStatus(200);
+app.get("/health", (req, res) => {
+  res.status(200).json({
+    status: "ok",
+    uptime: process.uptime(),
+    timestamp: new Date().toISOString(),
   });
+});
 
 // MIDDLEWARES
 app.use(
