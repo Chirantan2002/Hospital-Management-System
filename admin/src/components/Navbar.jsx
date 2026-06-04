@@ -145,7 +145,7 @@ const Navbar = () => {
     }
 
     clerk.openSignIn();
-    navigate("/h");
+    navigate("/");
   };
 
   // TO SIGNOUT

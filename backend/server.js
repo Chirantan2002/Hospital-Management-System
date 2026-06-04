@@ -15,7 +15,7 @@ const app = express();
 const PORT = process.env.PORT || 4000;
 
 const allowedOrigins = [
-  "http://localhost:5173",
+  "https://caresync-frontend-brown.vercel.app",
   "https://caresync-admin-psi.vercel.app",
 ];
 
