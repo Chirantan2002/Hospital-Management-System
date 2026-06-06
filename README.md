@@ -1,6 +1,6 @@
 # Hospital Management App
 
-A full-stack hospital management platform with separate backend API, patient-facing frontend, and admin/doctor management portals.
+CareSync is a full-stack hospital management platform with separate backend API, patient-facing frontend, and admin/doctor management portals. The platform is designed to streamline the complete healthcare workflow for patients, doctors, and administrators. The system provides a centralized solution for appointment scheduling, doctor management, medical service discovery, secure authentication, image management, and online payment processing.
 
 ---
 
@@ -57,6 +57,83 @@ admin/              # Admin/doctor portal React app
 
 ---
 
+## 📁 Project Workflow
+
+```mermaid
+flowchart TD
+
+    %% Clients
+    P[Patient Portal]
+    A[Admin Portal]
+
+    %% Express Server
+    E[Express Server<br/>backend/server.js]
+
+    P -->|HTTP Request| E
+    A -->|HTTP Request| E
+
+    %% Middleware
+    E --> CORS[CORS Middleware]
+    CORS --> CLERKMW[Clerk Middleware<br/>clerkMiddleware]
+    CLERKMW --> JSON[JSON Parser]
+
+    %% Routes
+    subgraph ROUTES["API Routes"]
+        APPT[/api/appointments<br/>appointmentRouter.js/]
+        SERV[/api/services<br/>serviceRouter.js/]
+        SAPP[/api/service-appointments<br/>serviceAppointmentRouter.js/]
+        DOC[/api/doctors<br/>doctorRouter.js/]
+    end
+
+    JSON --> APPT
+    JSON --> SERV
+    JSON --> SAPP
+    JSON --> DOC
+
+    %% Protected Route
+    DOC --> AUTH[Doctor Auth Middleware<br/>doctorAuth]
+
+    %% Controllers
+    subgraph CONTROLLERS["Controllers"]
+        APPTCTRL[appointmentController.js]
+        SERVCTRL[serviceController.js]
+        SAPPCTRL[serviceAppointmentController.js]
+        DOCCTRL[doctorController.js]
+    end
+
+    APPT --> APPTCTRL
+    SERV --> SERVCTRL
+    SAPP --> SAPPCTRL
+    AUTH --> DOCCTRL
+
+    %% External Services
+    subgraph EXTERNAL["External Services"]
+        DB[(MongoDB Database)]
+        CLOUD[Cloudinary<br/>Image Storage]
+        STRIPE[Stripe<br/>Payment Processing]
+        CLERK[Clerk<br/>Authentication Service]
+    end
+
+    %% Database Connections
+    APPTCTRL --> DB
+    SERVCTRL --> DB
+    SAPPCTRL --> DB
+    DOCCTRL --> DB
+
+    %% Cloudinary Connections
+    DOCCTRL --> CLOUD
+
+    %% Stripe Connections
+    SAPPCTRL --> STRIPE
+
+    %% Clerk Authentication
+    CLERKMW --> CLERK
+```
+
+<!-- <img src="./CARESYNC-SOFTWARE-DIAGRAM.jpg" alt="CareSync Architecture" width="600"/> -->
+
+---
+
 ## 🛠️ Tech Stack
 
 - Node.js
@@ -86,15 +163,15 @@ npm install
 Create `backend/.env` with:
 
 ```env
-MONGODB_URI=
-JWT_SECRET=
-CLOUDINARY_CLOUD_NAME=
-CLOUDINARY_API_KEY=
-CLOUDINARY_API_SECRET=
-STRIPE_SECRET_KEY=
-FRONTEND_URL=http://localhost:5173
-CLERK_PUBLISHABLE_KEY=
-CLERK_SECRET_KEY=
+MONGODB_URI=                  YOUR_MONGODB_URI
+JWT_SECRET=                   YOUR_JWT_SECRET
+CLOUDINARY_CLOUD_NAME=        YOUR_CLOUDINARY_CLOUD_NAME
+CLOUDINARY_API_KEY=           YOUR_CLOUDINARY_API_KEY
+CLOUDINARY_API_SECRET=        YOUR_CLOUDINARY_API_SECRET
+STRIPE_SECRET_KEY=            YOUR_STRIPE_SECRET_KEY
+FRONTEND_URL=                 YOUR_FRONTEND_URL
+CLERK_PUBLISHABLE_KEY=        YOUR_CLERK_PUBLISHABLE_KEY
+CLERK_SECRET_KEY=             YOUR_CLERK_SECRET_KEY
 ```
 
 Start the backend:
@@ -113,7 +190,7 @@ npm install
 Create `frontend/.env` with:
 
 ```env
-VITE_CLERK_PUBLISHABLE_KEY=
+VITE_CLERK_PUBLISHABLE_KEY=   YOUR_VITE_CLERK_PUBLISHABLE_KEY
 ```
 
 Run the frontend:
@@ -132,7 +209,7 @@ npm install
 Create `admin/.env` with:
 
 ```env
-VITE_CLERK_PUBLISHABLE_KEY=
+VITE_CLERK_PUBLISHABLE_KEY=   YOUR_VITE_CLERK_PUBLISHABLE_KEY
 ```
 
 Run the admin portal:
@@ -247,11 +324,3 @@ npm run dev
 - `backend` is the central API for both React clients
 
 ---
-
-## 📘 Optional Enhancements
-
-If you want, I can also add:
-
-- a **subproject README** for `backend`, `frontend`, and `admin`
-- a **sample `.env.example`** file for each folder
-- a **deployment checklist** for production build steps
