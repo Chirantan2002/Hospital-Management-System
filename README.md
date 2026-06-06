@@ -57,7 +57,7 @@ admin/              # Admin/doctor portal React app
 
 ---
 
-## 📁 Project Workflow
+## 🔀 Project Workflow
 
 ```mermaid
 flowchart TD
@@ -320,7 +320,7 @@ npm run dev
 ## ✅ Notes
 
 - Dependencies are managed inside each subfolder (`backend`, `frontend`, `admin`)
-- Do not commit real secrets or `.env` files to source control
+- No real secrets or `.env` files are commited to source control
 - `backend` is the central API for both React clients
 
 ---
